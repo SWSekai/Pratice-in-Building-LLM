@@ -10,7 +10,7 @@ class SimpleTokenizer:
             text to token ID
         """
         preprocessing_text = re.split(r'([,.:;?_!"()\']|--|\s)', text) # 使用正則表達式分割文本
-        preprocessed_text = [token for token in preprocessing_text if token.strip()] # 過濾掉空字符串
+        preprocessed_text = [token.strip() for token in preprocessing_text if token.strip()] # 過濾掉空字符串
         tokens = [item if item in self.str_to_int
                                 else "<|unk|>" for item in preprocessed_text] # 將未知詞替換為 <|unk|>
         
