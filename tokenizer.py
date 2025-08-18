@@ -7,7 +7,7 @@ class SimpleTokenizer:
         
     def encode(self, text):
         """
-            text to token ID
+            text to token ID (tokenize)
         """
         preprocessing_text = re.split(r'([,.:;?_!"()\']|--|\s)', text) # 使用正則表達式分割文本
         preprocessed_text = [token.strip() for token in preprocessing_text if token.strip()] # 過濾掉空字符串
