@@ -3,6 +3,13 @@ import re
 class Txt_preprocessor:
     def __init__(self, file_path= 'the-verdict.txt'):
         self.file_path = file_path
+        self.rawText = self.read_file()
+        self.token = self.tokenize(self.rawText)
+        self.vocab = self.token_to_id(self.token)
+        
+        print(f"字元數: {len(self.rawText)}")
+        print(f"預處理後的字元數: {len(self.token)}")
+        print(f"詞彙表大小: {len(self.vocab)}")
         
     def read_file(self):
         """
@@ -19,9 +26,9 @@ class Txt_preprocessor:
         """
         tokens = re.split(r'([,.:;?_!"()\']|--|\s)', text) # 使用正則表達式分割文本
         
-        result = [token for token in tokens if token.strip()] # 過濾掉空字符串
+        token = [token for token in tokens if token.strip()] # 過濾掉空字符串
         
-        return result
+        return token
 
     def token_to_id(self, tokens):
         """
@@ -33,16 +40,13 @@ class Txt_preprocessor:
         
         return vocab
 
-    def get_txt_preprocessed(self):
-        rawText = self.read_file()
-        preprocessedText = self.tokenize(rawText)
-        vocab = self.token_to_id(preprocessedText)
+    def get_vocab_table(self):
         
-        return rawText, preprocessedText, vocab
+        for i, idx in enumerate(self.vocab.items()):
+            print(f"詞彙表索引: {i}, 詞彙: {idx[0]}, ID: {idx[1]}")
 
 if __name__ == "__main__":
     preprocessor = Txt_preprocessor()
-    rawText, preprocessedText, vocab = preprocessor.get_txt_preprocessed()
-    print(f"字元數: {len(rawText)}")
-    print(f"預處理後的字元數: {len(preprocessedText)}")
-    print(f"詞彙表大小: {len(vocab)}")
+    # rawText, preprocessedText, vocab = preprocessor.get_vocab_table()
+    
+    
