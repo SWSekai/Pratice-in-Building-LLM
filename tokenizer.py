@@ -1,5 +1,5 @@
 import re
-
+from preprocessed_txt import Txt_preprocessor
 class SimpleTokenizer:
     def __init__(self, vocab):
         self.str_to_int = vocab
@@ -28,4 +28,12 @@ class SimpleTokenizer:
         return text.strip()  # 去除首尾空格
     
 if __name__ == "__main__":
-    print("Execute Successfully")
+    file_path = 'the-verdict.txt'
+    preprocessed_txt = Txt_preprocessor()
+    
+    tokenizer = SimpleTokenizer(preprocessed_txt.vocab)
+    
+    # ids = tokenizer.encode(file_path)
+    ids = tokenizer.encode("Hello, do you like tea? <|endoftext|> In the snlit terraces of the palace.")
+    print(ids)
+    print(tokenizer.decode(ids))
