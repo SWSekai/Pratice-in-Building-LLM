@@ -5,6 +5,7 @@ import tiktoken
 from preprocessed_txt import Txt_preprocessor
 
 import numpy as np
+
 class GPTDataset(Dataset):
     """
         自訂資料集(批次載入)
@@ -41,8 +42,9 @@ def create_dataloader(txt,
                       max_length= 256, # 輸入資料和預測目標的最大長度(每筆資料量大小)
                       stride= 128, # y 資料流的偏移量
                       shuffle= True,
-                      drop_last= True,
-                      num_worker= 0):
+                      drop_last= True, # 丟棄最後一個不完整的批次
+                      num_worker= 0 # 額外的子進程數量(Windows系統設為0)
+                      ):
     """
         資料載入器(批次載入)
     """
@@ -51,13 +53,11 @@ def create_dataloader(txt,
     data_loader = DataLoader(dataset, 
                             batch_size= batch_size, 
                             shuffle= shuffle, 
-                            drop_last= drop_last, # 丟棄最後一個不完整的批次
-                            num_workers= 0 # 額外的子進程數量(Windows系統設為0)
-                            )
+                            drop_last= drop_last,
+                            num_workers= 0)
     
     return data_loader
     
-
 if __name__ == "__main__":
     preprocessed_txt = Txt_preprocessor()
     data_loader = create_dataloader(preprocessed_txt.rawText, batch_size= 8, max_length= 4, stride= 4, shuffle= False)

@@ -3,15 +3,15 @@ import re
 class Txt_preprocessor:
     def __init__(self, file_path= 'the-verdict.txt'):
         self.file_path = file_path
-        self.rawText = self.read_file()
-        self.token = self.tokenize(self.rawText)
-        self.vocab = self.token_to_id(self.token)
+        self.rawText = self.__read_file__()
+        self.token = self.__tokenize__(self.rawText)
+        self.vocab = self.__token_to_id__(self.token)
         
         print(f"字元數: {len(self.rawText)}")
         print(f"預處理後的字元數: {len(self.token)}")
         print(f"詞彙表大小: {len(self.vocab)}")
         
-    def read_file(self):
+    def __read_file__(self):
         """
             讀取文本文件
         """
@@ -20,7 +20,7 @@ class Txt_preprocessor:
         
         return rawText
     
-    def tokenize(self, text):
+    def __tokenize__(self, text):
         """
             Simple tokenizer function, 斷詞
         """
@@ -30,7 +30,7 @@ class Txt_preprocessor:
         
         return token
 
-    def token_to_id(self, tokens):
+    def __token_to_id__(self, tokens):
         """
             transform token to token id
         """
@@ -48,5 +48,3 @@ class Txt_preprocessor:
 if __name__ == "__main__":
     preprocessor = Txt_preprocessor()
     # rawText, preprocessedText, vocab = preprocessor.get_vocab_table()
-    
-    
