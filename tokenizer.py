@@ -1,5 +1,6 @@
 import re
-from preprocessed_txt import Txt_preprocessor
+from text_processing import Txt_preprocessor
+
 class SimpleTokenizer:
     def __init__(self, vocab):
         self.str_to_int = vocab

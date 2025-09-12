@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 import tiktoken
-from preprocessed_txt import Txt_preprocessor
+from text_processing import Txt_preprocessor
 
 import numpy as np
 
@@ -40,7 +40,7 @@ class GPTDataset(Dataset):
 def create_dataloader(txt, 
                       batch_size= 4,  # 批次大小(每次處理資料筆數)
                       max_length= 256, # 輸入資料和預測目標的最大長度(每筆資料量大小)
-                      stride= 128, # y 資料流的偏移量
+                      stride= 128, # 資料流的偏移量
                       shuffle= True,
                       drop_last= True, # 丟棄最後一個不完整的批次
                       num_worker= 0 # 額外的子進程數量(Windows系統設為0)
