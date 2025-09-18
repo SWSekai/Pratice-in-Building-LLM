@@ -41,7 +41,6 @@ class Txt_preprocessor:
         return vocab
 
     def get_vocab_table(self):
-        
         for i, idx in enumerate(self.vocab.items()):
             print(f"詞彙表索引: {i}, 詞彙: {idx[0]}, ID: {idx[1]}")
 

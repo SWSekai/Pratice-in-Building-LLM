@@ -3,7 +3,6 @@ from torch.utils.data import Dataset, DataLoader
 import tiktoken
 
 from text_processing import Txt_preprocessor
-from embedding_layer import create_embedding_layer
 
 import numpy as np
 
