@@ -26,9 +26,5 @@ if __name__ == "__main__":
         shuffle= False
     )
     
-    data_iter = iter(data_loader) # 建立資料迭代器
-    input, target = next(data_iter) # 取得第一個批次
-    print("First batch input token ID: ", input)
-    
     token_embeddings = token_embedding(input, vocab_size, embedding_dim)
     print(token_embeddings.shape)
