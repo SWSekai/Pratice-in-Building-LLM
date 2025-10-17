@@ -46,4 +46,6 @@ class Txt_preprocessor:
 
 if __name__ == "__main__":
     preprocessor = Txt_preprocessor()
+    print(preprocessor.token[:50])
     # rawText, preprocessedText, vocab = preprocessor.get_vocab_table()
+    # print(preprocessor.get_vocab_table())
