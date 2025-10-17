@@ -26,5 +26,5 @@ if __name__ == "__main__":
         shuffle= False
     )
     
-    token_embeddings = token_embedding(input, vocab_size, embedding_dim)
+    token_embeddings = token_embedding(raw_text, vocab_size, embedding_dim)
     print(token_embeddings.shape)

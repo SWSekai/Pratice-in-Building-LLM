@@ -31,10 +31,10 @@ class SimpleTokenizer:
 if __name__ == "__main__":
     file_path = 'the-verdict.txt'
     preprocessor = Txt_preprocessor()
-    
     tokenizer = SimpleTokenizer(preprocessor.vocab)
     
     ids = tokenizer.encode(preprocessor.rawText[:100])
     # ids = tokenizer.encode("Hello, do you like tea? <|endoftext|> In the snlit terraces of the palace.")
+    
     print(ids)
     print(tokenizer.decode(ids))
