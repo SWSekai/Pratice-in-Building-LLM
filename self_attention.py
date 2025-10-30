@@ -1,4 +1,24 @@
 import torch
+import torch.nn as nn
+
+class SelfAttentionV1(nn.Module):
+    def __init__(self, dimension_in, dimension_out):
+        super().__init__()
+        self.dimension_out = dimension_out
+        self.query = nn.Parameter(torch.rand(dimension_in, dimension_out)) # 查詢權重矩陣, requires_grad= False 表示不需要梯度
+        self.key = nn.Parameter(torch.rand(dimension_in, dimension_out))   # 鍵權重矩陣
+        self.value = nn.Parameter(torch.rand(dimension_in, dimension_out)) # 值權重矩陣
+
+    def forward(self, x):
+        queries = x @ self.query # 所有輸入的查詢向量
+        keys = x @ self.key      # 所有輸入的鍵向量
+        values = x @ self.value  # 所有輸入的值向量
+        
+        attn_scores = queries @ keys.T  # 注意力分數
+        attn_weights = torch.softmax(attn_scores / keys.shape[-1]**0.5, dim=-1)  # 注意力權重
+        context_vec = attn_weights @ values  # 上下文向量
+        
+        return context_vec
 
 if __name__ == "__main__":
     inputs = torch.tensor(
