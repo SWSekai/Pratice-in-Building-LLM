@@ -23,4 +23,14 @@ if __name__ == "__main__":
     key_x = x @ key      # 鍵向量
     value_x = x @ value  # 值向量
     
-    print(query_x)
+    keys = inputs @ key      # 所有輸入的鍵向量
+    values = inputs @ value  # 所有輸入的值向量
+    
+    keys_2 = keys[1]
+    attn_score_x_2 = query_x @ keys.T  # 計算注意力分數
+    
+    attn_weights_x = torch.softmax(attn_score_x_2 / keys.shape[-1]**0.5, dim=-1)  # 計算注意力權重
+    
+    context_vec_x = attn_weights_x @ values  # 計算上下文向量
+    
+    print(context_vec_x)
